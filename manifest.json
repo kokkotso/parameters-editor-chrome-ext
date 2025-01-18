@@ -1,0 +1,14 @@
+{
+    "name": "Parameters Editor",
+    "description": "Visual editor for URL parameters",
+    "version": "1.0",
+    "manifest_version": 3,
+    "action": {
+      "default_popup": "app.html",
+      "default_icon": "images/icon.png"
+    },
+    "permissions": [
+      "storage",
+      "activeTab"
+    ]
+  }
