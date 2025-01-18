@@ -18,9 +18,10 @@ async function run(parameters, options) {
     const currentDomain = new URL(currentURL).hostname;
     if (!whitelistDomains.includes(currentDomain)) {
       throwError("Domain not whitelisted");
+      return;
     }
-    return;
   }
+  
   console.log("You shouldn't be seeing this");
 }
 
