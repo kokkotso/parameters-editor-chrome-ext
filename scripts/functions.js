@@ -1,9 +1,9 @@
 import { parameters, options, whitelistDomains } from "./settings.js";
 
 function throwError(msg) {
-    console.error(msg);
-    return;
-  }
+  console.error(msg);
+  return;
+}
 
 async function run(parameters, options) {
   const currentTab = await getCurrentTab();
@@ -19,6 +19,7 @@ async function run(parameters, options) {
     }
   }
   reloadTab(currentTab, transformURL(currentURL, options, parameters));
+  redirectLinks(options, parameters);
 }
 
 // Get active tab, returns object
@@ -53,8 +54,8 @@ function updateURL() {
 }
 
 function reloadTab(currentTab, url) {
-    console.log("Reloading window");
-    chrome.tabs.update(currentTab.id, { url: url });
+  console.log("Reloading window");
+  chrome.tabs.update(currentTab.id, { url: url });
 }
 
 run(parameters, options);
