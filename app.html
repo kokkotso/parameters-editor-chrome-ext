@@ -3,22 +3,29 @@
     <h1>Parameter Editor</h1>
     <p>Created by <a href="https://github.com/kokkotso">Kokko Tso</a></p>
     <h2>Add Parameter</h2>
-    <form>
+    <form id="param_form">
         <label for="param_key">Parameter Key:</label>
         <input type="text" id="param_key" name="param_key"><br><br>
         <label for="param_val">Parameter Value:</label>
         <input type="text" id="param_val" name="param_val"><br><br>
-        <input type="submit" value="Save">
+        <input type="submit" value="Add">
         <input type="reset" value="Clear">
     </form>
     <h2>Active parameters</h2>
+    <table id="param_table">
+        <tr>
+            <th>Key</th>
+            <th>Value</th>
+            <th>Actions</th>
+        </tr>
+    </table>
     <h3>Options</h3>
     <form>
-        <input type="checkbox" id="append_all" name="append_all" value="false">
+        <input type="checkbox" id="append_all" name="append_all">
         <label for="append_all">Append parameters to all links</label><br><br>
-        <input type="checkbox" id="overwrite_org" name="overwrite_org" value="false">
+        <input type="checkbox" id="overwrite_org" name="overwrite_org">
         <label for="overwrite_org">Overwrite default params</label><br><br>
-        <input type="checkbox" id="run_everywhere" name="run_everywhere" value="false">
+        <input type="checkbox" id="run_everywhere" name="run_everywhere">
         <label for="run_everywhere">Apply params on all sites</label><br><br>
     </form>
     <script type="module" src="scripts/functions.js"></script>

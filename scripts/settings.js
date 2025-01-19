@@ -1,7 +1,7 @@
 const parameters = {
     testing: true,
     gclid: "12gai5",
-    utm_source: "google",
+    utm_source: "google"
   };
   
 const options = {
