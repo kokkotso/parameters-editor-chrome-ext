@@ -1,6 +1,4 @@
-import { parameters, options } from "./settings.js";
-
-const whitelistDomains = ["walkerdunlop.com", "walker-dunlop.webflow.io"];
+import { parameters, options, whitelistDomains } from "./settings.js";
 
 async function run(parameters, options) {
   const currentURL = await getCurrentURL();

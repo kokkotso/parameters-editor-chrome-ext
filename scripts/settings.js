@@ -10,4 +10,6 @@ const options = {
     run_everywhere: false,
   };
 
-export { parameters, options };
+const whitelistDomains = ["walkerdunlop.com", "walker-dunlop.webflow.io"];
+
+export { parameters, options, whitelistDomains };
