@@ -19,7 +19,6 @@ async function run(parameters, options) {
     }
   }
   reloadTab(currentTab, transformURL(currentURL, options, parameters));
-  redirectLinks(options, parameters);
 }
 
 // Get active tab, returns object
@@ -47,15 +46,9 @@ function transformURL(url, options, parameters) {
   return newURL.href;
 }
 
-function updateURL() {
-  console.log("Updating URL");
-  const targetURL = window.location.href;
-  console.log("Current URL: ", targetURL);
-}
-
-function reloadTab(currentTab, url) {
+async function reloadTab(currentTab, url) {
   console.log("Reloading window");
-  chrome.tabs.update(currentTab.id, { url: url });
+  await chrome.tabs.update(currentTab.id, { url: url });
 }
 
 run(parameters, options);
