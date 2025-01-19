@@ -1,19 +1,11 @@
-const parameters = {
-  testing: true,
-  gclid: "12gai5",
-  utm_source: "google",
-};
-
-const options = {
-  append_all: false,
-  overwrite_org: false,
-  run_everywhere: false,
-};
+import { parameters, options } from "./settings.js";
 
 const whitelistDomains = ["walkerdunlop.com", "walker-dunlop.webflow.io"];
 
 async function run(parameters, options) {
   const currentURL = await getCurrentURL();
+
+  // Check whitelisted domains
   if (options.run_everywhere === false) {
     const currentDomain = new URL(currentURL).hostname;
     if (!whitelistDomains.includes(currentDomain)) {
