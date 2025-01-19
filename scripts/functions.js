@@ -1,7 +1,14 @@
 import { parameters, options, whitelistDomains } from "./settings.js";
 
+function throwError(msg) {
+    console.error(msg);
+    return;
+  }
+
 async function run(parameters, options) {
-  const currentURL = await getCurrentURL();
+  const currentTab = await getCurrentTab();
+  const currentURL = currentTab.url;
+  console.log("Current URL: ", currentURL);
 
   // Check whitelisted domains
   if (options.run_everywhere === false) {
@@ -11,28 +18,29 @@ async function run(parameters, options) {
       return;
     }
   }
-  
-  console.log("You shouldn't be seeing this");
+  reloadTab(currentTab, transformURL(currentURL, options, parameters));
 }
 
-async function getCurrentURL() {
-  console.log("Getting current URL");
+// Get active tab, returns object
+async function getCurrentTab() {
+  console.log("Getting current tab");
   const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
+  console.log("Tabs: ", tabs);
   const currentTab = tabs[0];
-  console.log("Current URL: ", currentTab.url);
-  console.log(typeof currentTab.url);
-  return currentTab.url;
+  console.log("Current tab: ", currentTab);
+  return currentTab;
 }
 
+// Adds parameters to passed URL
 function transformURL(url, options, parameters) {
   const newURL = new URL(url);
-  console.log("Options.Overwrite: ", options.overwrite_org);
+
+  // Check if overwrite is true, if so, clear URL.search
   if (options.overwrite_org === true) {
     newURL.search = "";
-  } else {
-    for (const [key, value] of Object.entries(parameters)) {
-      newURL.searchParams.append(key, value);
-    }
+  }
+  for (const [key, value] of Object.entries(parameters)) {
+    newURL.searchParams.append(key, value);
   }
   console.log("New URL: ", newURL.href);
   return newURL.href;
@@ -44,8 +52,9 @@ function updateURL() {
   console.log("Current URL: ", targetURL);
 }
 
-function throwError(msg) {
-    console.error(msg);
+function reloadTab(currentTab, url) {
+    console.log("Reloading window");
+    chrome.tabs.update(currentTab.id, { url: url });
 }
 
 run(parameters, options);

@@ -5,9 +5,9 @@ const parameters = {
   };
   
 const options = {
-    append_all: false,
+    append_all: true,
     overwrite_org: false,
-    run_everywhere: false,
+    run_everywhere: true,
   };
 
 const whitelistDomains = ["walkerdunlop.com", "walker-dunlop.webflow.io"];
