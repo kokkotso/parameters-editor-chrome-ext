@@ -1,0 +1,11 @@
+{
+  "name": "parameters-editor-chrome-ext",
+  "version": "1.0.0",
+  "description": "Simple chrome extension for editing parameters",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kokko Tso",
+  "license": "ISC"
+}
